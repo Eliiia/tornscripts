@@ -1,7 +1,7 @@
 import time
 import math
 
-from func import req, getitemdetails
+from func import req, getitemdetails, abbrvcheck
 
 items = [] 
 
@@ -47,8 +47,9 @@ while True:
     # ask for quantity and price
     # TODO: allow user to input "k" and "m"
     price = input("How much do you wish to charge? ")
-    if not price.isdigit(): # if did not enter a number, assume incorrect item found
-        print("Non-number inputted, going back to name input...")
+    price = abbrvcheck(price)
+    if price == "quit" or not price.isdigit(): # if did not enter a number, assume incorrect item found
+        print("Non-number detected, going back to name input...")
         continue 
     else: price = int(price)
     itemquan = int(input("How many? "))
