@@ -44,6 +44,8 @@ while True:
             if(i % 5 == 0): marketinfo += "\n\t"
             marketinfo += f"${x["cost"]} ({x["quantity"]}) | "
 
+    print(marketinfo)
+
     # ask for quantity and price
     # TODO: allow user to input "k" and "m"
     price = input("How much do you wish to charge? ")
