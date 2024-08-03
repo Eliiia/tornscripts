@@ -52,6 +52,7 @@ def getitemdetails(itemlookingfor):
 def abbrvcheck(num): # check for "k" or "m" in a number
     if "k" in num or "m" in num: 
         return num.replace("k", "000").replace("m", "000000")
+    else: return num
 
 # tornitems = json.loads(requests.get(f"https://api.torn.com/torn/?selections=items&key={TOKEN}").content)
 # if "error" in tornitems:
