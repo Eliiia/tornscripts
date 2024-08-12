@@ -68,11 +68,19 @@ print("\n---\n") # separator
 # print receipt per-item; market value and given
 totaltocharge = 0
 totalmarketvalue = 0
+unpaiditems = []
 for x in items:
+    # get info and print
     itemtotal = x["quantity"]*x["price"]
     totaltocharge += itemtotal
     totalmarketvalue += x["quantity"]*x["market_value"]
     print(f"{x["quantity"]} {x["name"]} at ${x["price"]} = ${itemtotal}")
+    # add to list of unpaid items
+    if x["price"] == 0:
+        unpaiditems.append(x["name"])
+
+# print unpaid items
+print(f"Items at $0 price: {", ".join(unpaiditems)}")
 
 # print totals; market value and given
 print() # empty line
