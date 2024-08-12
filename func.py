@@ -45,17 +45,13 @@ def getitemdetails(itemlookingfor):
             None, # return none if no valid result found
         )
 
-    #out = next((item for item in tornitems if item["name"].lower().startswith(itemname.lower())), None)
-    #if out == None: return None
-    #else: return out[0]["id"]
-
-def abbrvcheck(num): # check for "k" or "m" in a number
-    if "k" in num or "m" in num: 
-        return num.replace("k", "000").replace("m", "000000")
-    else: return num
-
-# tornitems = json.loads(requests.get(f"https://api.torn.com/torn/?selections=items&key={TOKEN}").content)
-# if "error" in tornitems:
-#     print(f"\nError:\n{tornitems}")
-#     exit()
-# else: tornitems = tornitems["bazaar"][:5]
+def abbrvcheck(num, f): 
+    # check for "k" or "m" in a number
+    # "f" is a type function to specify type of output
+    # being able to specify allows for user input to be fed directly in and then processed after
+    if num.endswith("k"):
+        num = f(int(float(num.replace("k", "")) * 1000))
+    elif num.endswith("m"):
+        num = f(int(float(num.replace("m", "")) * 1000000))
+    # todo: if k or m not at the end, tell program it is invalid number?
+    return num

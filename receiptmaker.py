@@ -47,9 +47,8 @@ while True:
     print(marketinfo)
 
     # ask for quantity and price
-    # TODO: allow user to input "k" and "m"
     price = input("How much do you wish to charge? ")
-    price = abbrvcheck(price)
+    price = abbrvcheck(price, str)
     if price == "quit" or not price.isdigit(): # if did not enter a number, assume incorrect item found
         print("Non-number detected, going back to name input...")
         continue 
