@@ -31,7 +31,7 @@ tornitems = req("https://api.torn.com/torn/?selections=items")["items"].items()
 
 def getitemdetails(itemlookingfor):
     itemlookingfor = itemlookingfor.lower()
-    # find first match using startswith() and lower()
+    # loop through three algorithms and return none if nothing at all found
     return (
         # first criteria: exact result
         next(
