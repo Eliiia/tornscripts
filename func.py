@@ -50,7 +50,7 @@ def getitemdetails(itemlookingfor):
         # second criteria: startswith
         or next(
             (
-                { # return these details...
+                { 
                     "id": item_id,
                     "name": item_details["name"],
                     "market_value": item_details["market_value"],
@@ -64,7 +64,7 @@ def getitemdetails(itemlookingfor):
         # third criteria: in
         or next(
             (
-                { # return these details...
+                { 
                     "id": item_id,
                     "name": item_details["name"],
                     "market_value": item_details["market_value"],
