@@ -30,8 +30,11 @@ def req(url):
 tornitems = req("https://api.torn.com/torn/?selections=items")["items"].items()
 
 def getitemdetails(itemlookingfor):
+    itemlookingfor = itemlookingfor.lower()
     # find first match using startswith() and lower()
-    return next(
+    return (
+        # first criteria: exact result
+        next(
             (
                 { # return these details...
                     "id": item_id,
@@ -40,10 +43,40 @@ def getitemdetails(itemlookingfor):
                     "circulation": item_details["circulation"],
                 }
                 for item_id, item_details in tornitems # ...by looping in this loop...
-                if item_details["name"].lower().startswith(itemlookingfor.lower()) # ...and checking for this
+                if item_details["name"].lower() == itemlookingfor # ...and checking for this
             ),
             None, # return none if no valid result found
         )
+        # second criteria: startswith
+        or next(
+            (
+                { # return these details...
+                    "id": item_id,
+                    "name": item_details["name"],
+                    "market_value": item_details["market_value"],
+                    "circulation": item_details["circulation"],
+                }
+                for item_id, item_details in tornitems
+                if item_details["name"].lower().startswith(itemlookingfor) 
+            ),
+            None, 
+        )
+        # third criteria: in
+        or next(
+            (
+                { # return these details...
+                    "id": item_id,
+                    "name": item_details["name"],
+                    "market_value": item_details["market_value"],
+                    "circulation": item_details["circulation"],
+                }
+                for item_id, item_details in tornitems 
+                if itemlookingfor in item_details["name"].lower() 
+            ),
+            None, 
+        )
+    )
+
 
 def abbrvcheck(num, f): 
     # check for "k" or "m" in a number
