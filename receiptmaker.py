@@ -76,8 +76,8 @@ for x in items:
 
 # print totals; market value and given
 print() # empty line
-print(f"Total: ${totaltocharge/1000}k ~= ${math.floor(totaltocharge/1000)}k (${math.floor(totaltocharge/1000)/1000}m)")
-print(f"Total market value: ${totalmarketvalue/1000}k (${totaltocharge/1000000}m)")
+print(f"Total: ${totaltocharge/1000}k (~${math.floor(totaltocharge/1000)}k or ~${math.floor(totaltocharge/1000000)}m)")
+print(f"Total market value: ${totalmarketvalue/1000}k (~${totalmarketvalue/1000000}m)")
 
 # Allow user to manually input rounded number
 input("Rounded to: $")
